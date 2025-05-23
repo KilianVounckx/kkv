@@ -17,3 +17,9 @@ pub fun transpose(xs : list<list<a>>) : <> list<list<a>>
       fun combine(y, h, ys, t)
         Cons(Cons(y, h), Cons(ys, t).pretend-decreasing.transpose)
       combine(x, hds, xx, tls)
+
+pub fun chunks(xs : list<a>, n : int) : <> list<list<a>>
+  val (chunk, rest) = xs.split(n)
+  match rest
+    [] -> []
+    _ -> Cons(chunk, rest.pretend-decreasing.chunks(n))
